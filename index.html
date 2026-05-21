@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tim Footdale – eCommerce Pro, Adventure Lover</title>
+  <meta name="description" content="eCommerce Specialist helping businesses connect with more customers, increase orders and improve conversion rates." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Tokens ─────────────────────────────────────────────── */
+    :root {
+      --ink:       #0a1f2e;
+      --paper:     #f0f7fb;
+      --mid:       #4a7a96;
+      --accent:    #0178ac;
+      --accent2:   #3ab2e5;
+      --rule:      rgba(1,120,172,.15);
+      --serif:     'DM Serif Display', Georgia, serif;
+      --sans:      'DM Sans', system-ui, sans-serif;
+      --max:       960px;
+      --pad:       clamp(1.5rem, 5vw, 4rem);
+    }
+
+    /* ─── Reset ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── Layout helpers ─────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: var(--max);
+      margin-inline: auto;
+      padding-inline: var(--pad);
+    }
+
+    /* ─── Nav ────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule);
+      padding-block: 1.1rem;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      letter-spacing: -.01em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      font-size: .875rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .nav-links a {
+      color: var(--mid);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ─── Hero ───────────────────────────────────────────────── */
+    .hero {
+      padding-block: clamp(2rem, 5vw, 3.5rem) clamp(2rem, 5vw, 3.5rem);
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .8125rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1.5px;
+      background: var(--accent);
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      line-height: 1.08;
+      letter-spacing: -.02em;
+      max-width: 14ch;
+      margin-bottom: 1.75rem;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--accent2);
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--mid);
+      max-width: 48ch;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+    }
+    .tag {
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: .35rem .85rem;
+      border: 1.5px solid var(--rule);
+      border-radius: 2rem;
+      color: var(--mid);
+    }
+
+    /* ─── Section base ───────────────────────────────────────── */
+    section { padding-block: clamp(3rem, 8vw, 6rem); }
+    section + section { border-top: 1px solid var(--rule); }
+
+    .section-label {
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.15;
+      letter-spacing: -.02em;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ─── About ──────────────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 6vw, 5rem);
+      align-items: start;
+    }
+    .about-text p + p { margin-top: 1rem; }
+    .about-text p { color: var(--mid); }
+    .about-aside {
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 1rem;
+      padding: 2.5rem;
+    }
+    .aside-title {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      line-height: 1.25;
+      margin-bottom: 1.25rem;
+    }
+    .aside-title em { color: var(--accent); font-style: italic; }
+    .cta-btn {
+      display: inline-block;
+      margin-top: 1.75rem;
+      padding: .75rem 1.75rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: .375rem;
+      font-weight: 500;
+      font-size: .9375rem;
+      letter-spacing: .01em;
+      transition: opacity .2s, transform .15s;
+    }
+    .cta-btn:hover { opacity: .85; transform: translateY(-1px); }
+
+    /* ─── Services ───────────────────────────────────────────── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .service-card {
+      border: 1.5px solid var(--rule);
+      border-radius: .75rem;
+      padding: 2rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .service-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .service-icon {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+    .service-card h3 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      margin-bottom: .5rem;
+    }
+    .service-card p { font-size: .9375rem; color: var(--mid); }
+
+    /* ─── Hobbies strip ──────────────────────────────────────── */
+    .hobbies {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .hobbies .section-label { color: var(--accent); }
+    .hobbies .section-label::after { background: rgba(255,255,255,.12); }
+    .hobbies h2 { color: var(--paper); }
+    .hobby-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .hobby-item {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      background: rgba(255,255,255,.07);
+      border-radius: .5rem;
+      padding: 1rem 1.5rem;
+      font-size: .9375rem;
+    }
+    .hobby-item span:first-child { font-size: 1.5rem; }
+
+    /* ─── Contact ────────────────────────────────────────────── */
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 6vw, 5rem);
+      align-items: start;
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    label {
+      font-size: .8125rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--mid);
+      display: block;
+      margin-bottom: .35rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: .75rem 1rem;
+      background: #fff;
+      border: 1.5px solid var(--rule);
+      border-radius: .375rem;
+      font-family: var(--sans);
+      font-size: 1rem;
+      color: var(--ink);
+      transition: border-color .2s;
+      outline: none;
+    }
+    input:focus, textarea:focus { border-color: var(--accent2); }
+    textarea { min-height: 130px; resize: vertical; }
+    .form-group { display: flex; flex-direction: column; }
+    button[type="submit"] {
+      align-self: flex-start;
+      padding: .75rem 2rem;
+      background: var(--accent2);
+      color: #fff;
+      border: none;
+      border-radius: .375rem;
+      font-family: var(--sans);
+      font-size: .9375rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity .2s, transform .15s;
+    }
+    button[type="submit"]:hover { opacity: .85; transform: translateY(-1px); }
+
+    .contact-info p {
+      color: var(--mid);
+      margin-bottom: 1.5rem;
+      max-width: 38ch;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: .75rem; margin-top: 2rem; }
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      font-weight: 500;
+      font-size: .9375rem;
+      color: var(--ink);
+      border-bottom: 1.5px solid var(--rule);
+      padding-bottom: .75rem;
+      transition: color .2s;
+    }
+    .contact-link:hover { color: var(--accent); }
+
+    /* ─── Footer ─────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding-block: 2rem;
+      font-size: .875rem;
+      color: var(--mid);
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-logo { font-family: var(--serif); font-size: 1rem; color: var(--ink); }
+
+    /* ─── Animations ─────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-eyebrow { animation: fadeUp .5s ease both; }
+    h1             { animation: fadeUp .55s .1s ease both; }
+    .hero-sub      { animation: fadeUp .55s .2s ease both; }
+    .hero-tags     { animation: fadeUp .55s .3s ease both; }
+
+    /* ─── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 720px) {
+      .about-grid, .contact-inner { grid-template-columns: 1fr; }
+      .nav-links { gap: 1.25rem; }
+    }
+    @media (max-width: 480px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container nav-inner">
+      <a class="nav-logo" href="#">Tim Footdale</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <p class="hero-eyebrow">eCommerce Specialist</p>
+      <h1>Helping your store <em>grow</em> — not guess.</h1>
+      <p class="hero-sub">
+        Tired of not knowing what to do next to improve your online store?
+        I help businesses connect with more customers, increase orders, and improve conversion rates.
+      </p>
+      <div class="hero-tags">
+        <span class="tag">eCommerce Pro</span>
+        <span class="tag">Adventure Lover</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <p class="section-label">About</p>
+      <div class="about-grid">
+        <div class="about-text">
+          <h2>I'm Tim.<br>Let's grow your store.</h2>
+          <p>I'm an eCommerce specialist with a passion for helping online businesses reach their potential. Whether you're struggling with traffic, conversions, or retention — I dig into the data and find the opportunities others miss.</p>
+          <p>When I'm not optimising stores, you'll find me out on an adventure. That same curiosity and methodical thinking drives everything I do professionally.</p>
+        </div>
+        <div class="about-aside">
+          <p class="aside-title">Not sure what's <em>holding back</em> your store?</p>
+          <p style="font-size:.9375rem; opacity:.75; line-height:1.6;">Let's have a conversation. A fresh set of experienced eyes on your eCommerce setup can uncover quick wins and longer-term opportunities you might not see from the inside.</p>
+          <a class="cta-btn" href="#contact">Get in touch →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <p class="section-label">What I do</p>
+      <h2>eCommerce services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🔍</div>
+          <h3>Store Audits</h3>
+          <p>A thorough review of your store — from technical performance to messaging — with a prioritised action plan.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🛒</div>
+          <h3>Customer Acquisition</h3>
+          <p>Strategies to bring more of the right customers to your store and keep them coming back.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📊</div>
+          <h3>Analytics & Reporting</h3>
+          <p>Setting up proper tracking so you actually understand what's working and where your money is best spent.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOBBIES -->
+  <section class="hobbies">
+    <div class="container">
+      <p class="section-label">Beyond work</p>
+      <h2>There's more to life than conversion rates.</h2>
+      <div class="hobby-list">
+        <div class="hobby-item"><span>🏔️</span><span>Adventure &amp; outdoors</span></div>
+        <div class="hobby-item"><span>🌍</span><span>Travel</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label">Contact</p>
+      <div class="contact-inner">
+        <div class="contact-info">
+          <h2>Let's talk eCommerce.</h2>
+          <p>Have a project in mind, a store that needs attention, or just want to pick my brain? Drop me a message and I'll get back to you promptly.</p>
+          </div>
+        <div class="contact-form">
+          <!-- For static hosting, point action to a form service like Formspree or Netlify Forms -->
+          <form action="https://formspree.io/f/mwvzoezo" method="POST">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell me about your store..." required></textarea>
+            </div>
+            <button type="submit" style="margin-top:1rem;">Send message →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <span class="footer-logo">Tim Footdale</span>
+      <span>&copy; <script>document.write(new Date().getFullYear())</script> Tim Footdale. All rights reserved.</span>
+    </div>
+  </footer>
+
+</body>
+</html>
